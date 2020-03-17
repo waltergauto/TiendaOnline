@@ -4,9 +4,12 @@ from django.db import models
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length = 30)
-    direccion = models.CharField(max_length = 50)
-    email = models.EmailField()
+    direccion = models.CharField(max_length = 50, verbose_name = "La Dirección") # el parámetro verbose_name sirve para indicarle al Django cómo queremos ver el atributo en el servidor
+    email = models.EmailField(blank = True, null = True) #los argumentos blank y null son para hacer que el campo email sea opcional
     telefono = models.CharField(max_length = 10)
+
+    def __str__(self): #con este metodo le decimos a django que queremos ver solo los nombres de los clientes, no como Object....
+        return self.nombre
 
 class Articulos(models.Model):
     nombre = models.CharField(max_length = 30)
